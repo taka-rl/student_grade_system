@@ -34,11 +34,23 @@ public:
     // Add a subject
     void addSubject(const std::string &subject);
 
+    // Remove a subject
+    void removeSubject(const std::string &subject);
+
     // Display all grades
     void showGrades() const;
 
     // Calculate subject average
     void calculateSubjectAverage() const;
+
+    // Calculate student average
+    void calculateStudentAverages() const;
+
+    // Calculate GPA
+    void calculateGpa(const int scale) const;
+
+    // Display Ranking by average grades
+    void displayRank() const;
 
     // Load grades
     void loadGrades();

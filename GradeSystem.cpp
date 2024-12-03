@@ -32,25 +32,57 @@ void GradeSystem::addSubject(const std::string &subject) {
     }
 }
 
+// Remove a subject
+void GradeSystem::removeSubject(const std::string &subject){
+    // Find the subject index in the subjects vector
+    auto it = std::find(subjects.begin(), subjects.end(), subject);
+    if(it == subjects.end()){
+        std::cerr << "Subject " << subject << " not found.\n";
+        return;
+    }
+
+    // Calculate the index of the subject to remove
+    size_t subjectIdx = std::distance(subjects.begin(), it);
+
+    // Remove the subject from the subjects vector
+    subjects.erase(it);
+
+    // Remove the corresponding grade from each student
+    for(Student &student : students){
+        std::vector<int> grades = student.getGrades();
+
+        // Check if the student has grades for this subject
+        if(subjectIdx < grades.size()){
+            grades.erase(grades.begin() + subjectIdx);
+        }
+
+        // Update the student's grades
+        student.setGrades(grades);
+    }
+
+    cout << "Subject " << subject << " and corresponding grades removed successfully.\n";
+    
+}
+
 // Display all grades
 void GradeSystem::showGrades() const {
-    std::cout << "\nDisplaying all grades:\n";
-    std::cout << "Name\t";
+    cout << "\nDisplaying all grades:\n";
+    cout << "Name\t";
     for (const std::string &subject : subjects) {
-        std::cout << subject << "\t";
+        cout << subject << "\t";
     }
-    std::cout << "\n";
+    cout << "\n";
 
     for (const Student &student : students) {
-        std::cout << student.getName() << "\t";
+        cout << student.getName() << "\t";
         for (int grade : student.getGrades()) {
-            std::cout << grade << "\t";
+            cout << grade << "\t";
         }
-        std::cout << "\n";
+        cout << "\n";
     }
 }
 
-// Calculate subject average
+// Calculate subject average grade
 void GradeSystem::calculateSubjectAverage() const {
     for (size_t i = 0; i < subjects.size(); i++) {
         float sum = 0;
@@ -60,13 +92,58 @@ void GradeSystem::calculateSubjectAverage() const {
             }
         }
         float average = students.empty() ? 0.0f : sum / students.size();
-        std::cout << "Average for " << subjects[i] << ": " << average << "\n";
+        cout << "Average for " << subjects[i] << ": " << average << "\n";
+    }
+}
+
+// Calculate student average grade
+void GradeSystem::calculateStudentAverages() const {
+    cout << "\nStudent Averages: \n";
+    for(const Student &student : students){
+        cout << student.getName() << ": " << student.calculateAverage() << "\n";
+    }
+}
+
+// Calculate GPA
+void GradeSystem::calculateGpa(const int scale) const{
+    /*
+    Converted to any scales
+    Converted GPA = Original grade points / Original scale * New scale
+    In this grade systems, the original scale is 5.0
+    Ex: if the new scale is 4
+    Converted GPA = (Original grade points / 5) * 4
+    */
+    cout << "\nStudent GPA on scale of " << scale << std::endl;
+    for(const Student &student : students){
+        cout << student.getName() << ": " << (student.calculateAverage() / 5) * scale << "\n";
+    }
+} 
+
+// Rank students by average grades
+void GradeSystem::displayRank() const{
+    // Define the pair vector
+    std::vector<std::pair<std::string, float>> studentRanks;
+    
+    // Assign the student name and the calculated average grade
+    for(const Student &student : students){
+        studentRanks.emplace_back(student.getName(), student.calculateAverage());
+    }
+
+    // Sort students by average grades in descending order
+    std::sort(studentRanks.begin(), studentRanks.end(), 
+                [](const auto &a, const auto &b){
+                    return a.second > b.second;
+            });
+
+    cout << "\nStudent Rankings:\n";
+    for(size_t i=0; i<studentRanks.size(); ++i){
+        cout << i + 1 << ". " << studentRanks[i].first << " - Average: " << studentRanks[i].second << "\n";
     }
 }
 
 // Load grades
 void GradeSystem::loadGrades(){
-    std::string file_path = create_csv_path();
+    string file_path = create_csv_path();
     cout << "Attempting to open file at: " << file_path << endl;
 
     ifstream inFile(file_path);
@@ -101,7 +178,7 @@ void GradeSystem::loadGrades(){
 
         // Read student name
         if(!getline(ss, cell, ',')) continue;
-            std::string studentName = cell;
+            string studentName = cell;
 
         // Read grades
         std::vector<int> studentGrades;
@@ -114,8 +191,9 @@ void GradeSystem::loadGrades(){
     }
 
     inFile.close();
-    std::cout << "Grades successfully loaded from: " << file_path << std::endl;
+    cout << "Grades successfully loaded from: " << file_path << endl;
 }
+
 // Export grades
 void GradeSystem::exportGrades() const{
     string file_path = create_csv_path();
@@ -144,8 +222,5 @@ void GradeSystem::exportGrades() const{
     }
 
     outFile.close();
-    std::cout << "Grades successfully exported to: " << file_path << std::endl;
+    cout << "Grades successfully exported to: " << file_path << endl;
 }
-
-
-
