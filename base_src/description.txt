@@ -1,0 +1,23 @@
+
+Student Grades Management System (Further Expansion)
+    Description: Expand your previous project where you managed student grades.
+    Base code: ../fundamentals/7_array_vectors_student_grades_system.cpp
+    Requirements:
+        Use pointers for dynamic memory allocation of students and subjects.
+        Allow functions to add, update, calculate averages, and find highest/lowest grades by reference or pointer.
+        Allow to add, delete students and subjects.
+    Future Expansion:
+        Use a Student class with std::vector fields for subjects and grades.: done
+        Use a GradeSystem class to manage all students, subjects and grades.: done
+        Implement functions for grade statistics like calculating GPA and displaying grade distribution.
+        Add input/output of grades as a txt or csv file: done
+        File division: done
+        student_grades_system.cpp will be replaced by main.cpp, GradeSystems.cpp and Student.cpp.
+
+
+How to compile 
+    1: using GradeSytems.cpp, Student.cpp, unitlities.cpp and main.cpp
+        g++ "./projects/student_grades_system/main.cpp" "./projects/student_grades_system/GradeSystem.cpp" "./projects/student_grades_system/Student.cpp" "./projects/student_grades_system/utilities.cpp" -o "./projects/student_grades_system/program"
+
+    2: using student_grades_system.cpp and unitlities.cpp
+        g++ "./projects/student_grades_system/student_grades_system.cpp" "./projects/student_grades_system/utilities.cpp" -o "./projects/student_grades_system/program"
