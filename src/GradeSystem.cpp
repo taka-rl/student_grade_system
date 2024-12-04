@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <fstream>
 #include <sstream>
+#include <map>
 using namespace std;
 
 
@@ -143,6 +144,27 @@ void GradeSystem::displayRank() const{
 
 // Display grade distributions
 void GradeSystem::displayDistribution() const{
+    cout << "Displaying grade distributions\n";
+    
+    for(size_t i=0; i<subjects.size(); i++){
+        // display each subject    
+        cout << "Grade distribution for " << subjects[i] << ":\n";
+
+        // Define map key: grade, value: count
+        std::map<int, int> gradeCount;
+
+        // Store grade
+        for(const Student &student : students){
+            if (i < student.getGrades().size()){
+                gradeCount[student.getGrades()[i]]++;
+            }
+        }
+
+        // Display grade distributions
+        for(const auto &entry : gradeCount){
+            cout << "Grade " << entry.first << ": " << entry.second << " students\n";
+        }
+    }
 }
 
 // Load grades
@@ -228,3 +250,4 @@ void GradeSystem::exportGrades() const{
     outFile.close();
     cout << "Grades successfully exported to: " << file_path << endl;
 }
+

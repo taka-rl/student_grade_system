@@ -16,7 +16,7 @@ int main() {
 
     int act;
     while (true){
-        cout << "Choose the action from 1 to 7\n";
+        cout << "Choose the action from 1 to 10\n";
         cout << "1 to add a new student\n";
         cout << "2 to add a new subject\n"; 
         cout << "3 to remove a student\n";
@@ -25,7 +25,8 @@ int main() {
         cout << "6 to calculate the average grades\n";
         cout << "7 to calculate GPA\n";
         cout << "8 to display ranking by average grades\n";
-        cout << "9 to end\n";
+        cout << "9 to display grade distributions\n";        
+        cout << "10 to end\n";
         cout << "Enter: ";
         cin >> act;
 
@@ -81,13 +82,17 @@ int main() {
                 gradeSystem.displayRank();
                 break;
             case 9:
+                cout << "Display grade distributions" << endl;
+                gradeSystem.displayDistribution();
+                break;                
+            case 10:
                 cout << "end this program" << endl;
                 break;
             default:
                 cout << "Select from 1 to 8 " << endl;
                 break;
         }
-        if(act ==9){
+        if(act == 10){
             break;
         }
     }    
