@@ -1,7 +1,7 @@
 # student_grade_system
 Currently under development to meet the requirements
 
-Base code for this project: https://github.com/taka-rl/c-plus-plus_practice/tree/1-develop-student-grade-system/projects/student_grades_system
+Base code for this project: base_src folder developed in my different project
 
 ## Requirements
 ### Functional requirements:
