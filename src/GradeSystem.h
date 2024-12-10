@@ -12,6 +12,13 @@ Attributes
     std::vector<std::string> subjects: List of subjects.
     std::vector<Student> students: List of students.
 Functions
+    calculate GPA, average grades
+    display all students' grades
+    display ranking by all students' average grades
+    display grade distributions
+    load thier grade on CSV file
+    export their grade on CSV file 
+    generate a report as csv for the selected student by the admin(teachers), including the selected student name, its grades, GPA, and average grade
 
 */
 
@@ -60,6 +67,9 @@ public:
 
     // Export grades
     void exportGrades() const;
+
+    // Login
+    bool authenticate() const;
 
 };
 

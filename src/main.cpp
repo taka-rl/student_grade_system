@@ -11,6 +11,12 @@ int main() {
     Student newStudent = {newStudentName, newGrades};
     int scale;
 
+    // Login
+    if(!gradeSystem.authenticate()){
+        cout << "Invalid credentials.\n";
+        return 1;
+    }
+
     // Load grades from CSV
     gradeSystem.loadGrades();
 

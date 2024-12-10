@@ -251,3 +251,27 @@ void GradeSystem::exportGrades() const{
     cout << "Grades successfully exported to: " << file_path << endl;
 }
 
+bool GradeSystem::authenticate() const{
+    // Definition for login 
+    const string adminUser = "admin", adminPass = "12345";
+    const string studentUser = "student", studentPass = "67890";
+    string inputUser, inputPass;
+
+    cout << "Login" << endl;
+    cout << "Enter Username: ";
+    cin >> inputUser;
+
+    cout << "Enter Password: ";
+    cin >> inputPass;
+
+    if(inputUser == adminUser && inputPass == adminPass){
+        cout << "Login successful as an admin\n";
+        return true;
+    }
+    if(inputUser == studentUser && inputPass == studentPass){
+        cout << "Login successful as a student\n";
+        return true;
+    }
+
+    return false;
+}
