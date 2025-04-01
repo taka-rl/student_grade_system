@@ -23,7 +23,10 @@ Functions
 */
 
 
+class Admin;  // Forward declaration
+
 class GradeSystem {
+    friend class Admin;  // Only Admin can access private/protected parts.
 private:
     std::vector<std::string> subjects;
     std::vector<Student> students;

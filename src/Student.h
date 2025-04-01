@@ -1,7 +1,7 @@
 #ifndef STUDENT_H
 #define STUDENT_H
 
-#include <string>
+#include "User.h"
 #include <vector>
 
 /*
@@ -13,19 +13,17 @@ Functions
 
 */
 
-class Student {
+class Student : public User {
 private:
-    std::string name;
     std::vector<int> grades;
 
 public:
     // Constructor
     Student(const std::string &name, const std::vector<int> &grades = {});
+    
+    void displayRole() const override;
 
     // Getters and Setters
-    std::string getName() const;
-    void setName(const std::string &newName);
-
     std::vector<int> getGrades() const;
     void setGrades(const std::vector<int> &newGrades);
 

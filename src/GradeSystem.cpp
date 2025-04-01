@@ -19,7 +19,7 @@ void GradeSystem::addStudent(const Student &student) {
 // Remove a student by name
 void GradeSystem::removeStudent(const std::string &name) {
     students.erase(std::remove_if(students.begin(), students.end(),
-                                  [&](const Student &s) { return s.getName() == name; }),
+                                  [&](const User &s) { return s.getName() == name; }),
                    students.end());
 }
 

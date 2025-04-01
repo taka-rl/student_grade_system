@@ -1,13 +1,16 @@
 #include "Student.h"
+#include "User.h"
 #include <numeric>
+#include <iostream>
 
 // Constructor
-Student::Student(const std::string &name, const std::vector<int> &grades) : name(name), grades(grades) {}
+Student::Student(const std::string &name, const std::vector<int> &grades) : User(name), grades(grades) {}
+
+void Student::displayRole() const {
+    std::cout << "Role: Student\n";
+}
 
 // Getters and Setters
-std::string Student::getName() const { return name; }
-void Student::setName(const std::string &newName) { name = newName; }
-
 std::vector<int> Student::getGrades() const { return grades; }
 void Student::setGrades(const std::vector<int> &newGrades) { grades = newGrades; }
 
