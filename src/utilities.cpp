@@ -23,8 +23,12 @@ string get_current_path(){
     return current_path; 
 }
 
-string create_csv_path(){
-    const string filename = "grades.csv";
+string create_csv_path(const string filename){
+    if(filename != "grades.csv" && filename != "users.csv"){
+        cerr << "Set either grades.csv or users.csv as a filenmae" << endl;
+        return;
+    }
+
     const string path = get_current_path();
     return path + "/data/" + filename;
 }
