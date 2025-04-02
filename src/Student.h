@@ -23,6 +23,8 @@ public:
     
     void displayRole() const override;
 
+    void displayMenu() const;
+
     // Getters and Setters
     std::vector<int> getGrades() const;
     void setGrades(const std::vector<int> &newGrades);
