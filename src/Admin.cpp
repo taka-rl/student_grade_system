@@ -5,7 +5,7 @@ using namespace std;
 
 
 // Constructor
-Admin::Admin(const std::string &name) : User(name) {}
+Admin::Admin(const std::string &name, const std::string &password) : User(name, password) {}
 
 void Admin::displayRole() const {
     std::cout << "Role: Admin\n";

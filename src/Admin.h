@@ -9,7 +9,7 @@ class GradeSystem; // Forward declaration
 class Admin : public User {
 public:
     // Constructor
-    Admin(const std::string &name);
+    Admin(const std::string &name, const std::string &password) : User(name, password) {}
     
     void displayRole() const override;
 

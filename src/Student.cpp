@@ -5,7 +5,7 @@
 using namespace std;
 
 // Constructor
-Student::Student(const std::string &name, const std::vector<int> &grades) : User(name), grades(grades) {}
+Student::Student(const std::string &name, const std::string &password, const std::vector<int> &grades) : User(name, password), grades(grades) {}
 
 void Student::displayRole() const {
     std::cout << "Role: Student\n";
