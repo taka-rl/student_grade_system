@@ -3,7 +3,8 @@
 
 #include <vector>
 #include <string>
-#include "Student.h"  // Include the Student class
+#include "Student.h"
+#include "Admin.h"
 
 
 /*
@@ -30,6 +31,7 @@ class GradeSystem {
 private:
     std::vector<std::string> subjects;
     std::vector<Student> students;
+    std::vector<Admin> admins;
 
 public:
     // Constructor
@@ -72,8 +74,7 @@ public:
     void exportGrades() const;
 
     // Login
-    bool authenticate() const;
-
+    User* authenticate() const;
 };
 
 #endif // GRADESYSTEM_H

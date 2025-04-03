@@ -9,7 +9,7 @@ using namespace std;
 
 
 // Constructor
-GradeSystem::GradeSystem() : subjects(), students() {}
+GradeSystem::GradeSystem() : subjects(), students(), admins() {}
 
 // Add a student
 void GradeSystem::addStudent(const Student &student) {
@@ -169,7 +169,7 @@ void GradeSystem::displayDistribution() const{
 
 // Load grades
 void GradeSystem::loadGrades(){
-    string file_path = create_csv_path();
+    string file_path = create_csv_path("grades.csv");
     cout << "Attempting to open file at: " << file_path << endl;
 
     ifstream inFile(file_path);
@@ -222,7 +222,7 @@ void GradeSystem::loadGrades(){
 
 // Export grades
 void GradeSystem::exportGrades() const{
-    string file_path = create_csv_path();
+    string file_path = create_csv_path("grades.csv");
     cout << "Exporting grades to: " << file_path << endl;
 
     ofstream outFile(file_path);
@@ -251,27 +251,51 @@ void GradeSystem::exportGrades() const{
     cout << "Grades successfully exported to: " << file_path << endl;
 }
 
-bool GradeSystem::authenticate() const{
-    // Definition for login 
-    const string adminUser = "admin", adminPass = "12345";
-    const string studentUser = "student", studentPass = "67890";
+User* GradeSystem::authenticate() const{
+    // Definition for login
     string inputUser, inputPass;
 
     cout << "Login" << endl;
     cout << "Enter Username: ";
     cin >> inputUser;
-
     cout << "Enter Password: ";
     cin >> inputPass;
 
-    if(inputUser == adminUser && inputPass == adminPass){
-        cout << "Login successful as an admin\n";
-        return true;
+    // Load users.csv
+    string file_path = create_csv_path("users.csv");
+    ifstream file(file_path);
+    if(!file){
+        cerr << "Error opening users.csv for reading" << endl;
+        return nullptr;
     }
-    if(inputUser == studentUser && inputPass == studentPass){
-        cout << "Login successful as a student\n";
-        return true;
-    }
+    
+    string line;
+    getline(file, line); // Skip header
 
-    return false;
+    while(getline(file, line)){
+        stringstream ss(line);
+        string id, name, password, role;
+    
+        getline(ss, id, ',');
+        getline(ss, name, ',');
+        getline(ss, password, ',');
+        getline(ss, role, ',');
+        
+        if(name == inputUser && password == inputPass){
+            if(role == "admin"){
+                // error
+                return new Admin(name, password);
+            }else if(role == "student"){
+                // Match student from loaded grade list
+                for(const Student &student : students){
+                    if(student.getName() == name){
+                        return new Student(student);
+                    }
+                }
+            }
+        }
+    }
+    
+    cout << "Invalid credentials or role not recognized." << endl;
+    return nullptr;
 }
