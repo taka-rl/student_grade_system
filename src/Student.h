@@ -19,7 +19,7 @@ private:
 
 public:
     // Constructor
-    Student(const std::string &name, const std::string &password, const std::vector<int> &grades = {}) : User(name, password), grades(grades) {}
+    Student(const std::string &name, const std::string &password, const std::vector<int> &grades = {});
     
     void displayRole() const override;
 

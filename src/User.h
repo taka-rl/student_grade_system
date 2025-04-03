@@ -10,7 +10,7 @@ protected:
 
 public:
     // Constructor
-    User(const std::string &name, const std::string &password) : name(name), password(password) {}
+    User(const std::string &name, const std::string &password);
     virtual ~User() = default;
 
     // Getters and Setters
