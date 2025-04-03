@@ -26,7 +26,7 @@ string get_current_path(){
 string create_csv_path(const string filename){
     if(filename != "grades.csv" && filename != "users.csv"){
         cerr << "Set either grades.csv or users.csv as a filenmae" << endl;
-        return;
+        return "";
     }
 
     const string path = get_current_path();
