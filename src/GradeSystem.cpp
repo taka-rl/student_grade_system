@@ -213,7 +213,8 @@ void GradeSystem::loadGrades(){
         }
         
         // Create a Student object and add it to the students vector
-        students.emplace_back(studentName, studentGrades);
+        // Add code to get each password for each student and set it.
+        students.emplace_back(studentName, "67890", studentGrades);
     }
 
     inFile.close();
@@ -277,9 +278,9 @@ User* GradeSystem::authenticate() const{
         string id, name, password, role;
     
         getline(ss, id, ',');
+        getline(ss, role, ',');
         getline(ss, name, ',');
         getline(ss, password, ',');
-        getline(ss, role, ',');
         
         if(name == inputUser && password == inputPass){
             if(role == "admin"){
