@@ -3,6 +3,7 @@
 
 #include <string>
 
+
 class User {
 protected:
     std::string name;
@@ -19,6 +20,8 @@ public:
 
     std::string getPassword() const;
     void setPassword(const std::string &newPassword);
+
+    void resetPassword();
 
     virtual bool checkPassword(const std::string& input) const {
         return input == password;

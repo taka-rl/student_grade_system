@@ -138,7 +138,7 @@ int main(){
                 break;
             case 4:
                 cout << "Reset password" << endl;
-                // Reset password
+                student->resetPassword();
                 break;
             default:
                 cout << "Select from 1 to 4" << endl;
@@ -153,6 +153,9 @@ int main(){
 
     // Export grades back to CSV
     gradeSystem.exportGrades();
+
+    // Export Users back to CSV
+    gradeSystem.exportUsers();
 
     return 0;
 }

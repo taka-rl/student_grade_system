@@ -73,6 +73,9 @@ public:
     // Export grades
     void exportGrades() const;
 
+    // Export users
+    void exportUsers() const;
+
     // Login
     User* authenticate() const;
 };

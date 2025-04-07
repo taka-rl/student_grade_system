@@ -168,7 +168,27 @@ void GradeSystem::displayDistribution() const{
 }
 
 // Load grades
+// This function will be refactored later when considering the use of pointer.
 void GradeSystem::loadGrades(){
+    // Get a password
+    std::map<std::string, std::string> studentPasswords;
+    std::ifstream usersFile(create_csv_path("users.csv"));
+    std::string userLine;
+    getline(usersFile, userLine); // Skip header
+    while(getline(usersFile, userLine)){
+        std::stringstream ss(userLine);
+        std::string id, role, name, password;
+        getline(ss, id, ',');
+        getline(ss, role, ',');
+        getline(ss, name, ',');
+        getline(ss, password, ',');
+
+        if(role == "student") {
+            studentPasswords[name] = password;
+        }
+    }
+
+    // Load grades
     string file_path = create_csv_path("grades.csv");
     cout << "Attempting to open file at: " << file_path << endl;
 
@@ -211,10 +231,11 @@ void GradeSystem::loadGrades(){
         while(getline(ss, cell, ',')){
             studentGrades.push_back(std::stoi(cell)); // Convert string to int
         }
-        
+
         // Create a Student object and add it to the students vector
         // Add code to get each password for each student and set it.
-        students.emplace_back(studentName, "67890", studentGrades);
+        std::string password = studentPasswords.count(studentName) ? studentPasswords[studentName] : "67890";
+        students.emplace_back(studentName, password, studentGrades);
     }
 
     inFile.close();
@@ -251,6 +272,29 @@ void GradeSystem::exportGrades() const{
     outFile.close();
     cout << "Grades successfully exported to: " << file_path << endl;
 }
+
+void GradeSystem::exportUsers() const{
+    std::string file_path = create_csv_path("users.csv");
+    std::ofstream File(file_path);
+    if(!File){
+        std::cerr << "Error opening users.csv for writing.\n";
+        return;
+    }
+
+    File << "ID,Role,Name,Password\n";
+    int id = 1;
+
+    for(const Admin &admin : admins){
+        File << id++ << ",admin," << admin.getName() << "," << admin.getPassword() << "\n";
+    }
+    for(const Student &student : students){
+        File << id++ << ",student," << student.getName() << "," << student.getPassword() << "\n";
+    }
+
+    File.close();
+    std::cout << "User data exported successfully to users.csv\n";
+}
+
 
 User* GradeSystem::authenticate() const{
     // Definition for login
