@@ -3,23 +3,38 @@
 
 #include <vector>
 #include <string>
-#include "Student.h"  // Include the Student class
+#include "Student.h"
+#include "Admin.h"
 
 
 /*
 GradeSystem class manages all students, subjects, and grades.
 Attributes
     std::vector<std::string> subjects: List of subjects.
+    std::vector<Admin> admins: List of admins.
     std::vector<Student> students: List of students.
 Functions
-
+    calculate GPA, average grades
+    display all students' grades
+    display ranking by all students' average grades
+    display grade distributions
+    load thier grade on CSV file
+    load user data on CSV file
+    export their grade to CSV file 
+    export user data to CSV file 
+    authenticate user login
+    (future development)generate a report as csv for the selected student by the admin(teachers), including the selected student name, its grades, GPA, and average grade
 */
 
 
+class Admin;  // Forward declaration
+
 class GradeSystem {
+    friend class Admin;  // Only Admin can access private/protected parts.
 private:
     std::vector<std::string> subjects;
     std::vector<Student> students;
+    std::vector<Admin> admins;
 
 public:
     // Constructor
@@ -61,6 +76,11 @@ public:
     // Export grades
     void exportGrades() const;
 
+    // Export users
+    void exportUsers() const;
+
+    // Login
+    User* authenticate() const;
 };
 
 #endif // GRADESYSTEM_H

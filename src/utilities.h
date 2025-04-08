@@ -5,6 +5,6 @@
 
 // Function prototypes
 std::string get_current_path();
-std::string create_csv_path();
+std::string create_csv_path(const char* filename);
 
 #endif // UTILITIES_H
