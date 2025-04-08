@@ -11,6 +11,7 @@
 GradeSystem class manages all students, subjects, and grades.
 Attributes
     std::vector<std::string> subjects: List of subjects.
+    std::vector<Admin> admins: List of admins.
     std::vector<Student> students: List of students.
 Functions
     calculate GPA, average grades
@@ -18,9 +19,11 @@ Functions
     display ranking by all students' average grades
     display grade distributions
     load thier grade on CSV file
-    export their grade on CSV file 
-    generate a report as csv for the selected student by the admin(teachers), including the selected student name, its grades, GPA, and average grade
-
+    load user data on CSV file
+    export their grade to CSV file 
+    export user data to CSV file 
+    authenticate user login
+    (future development)generate a report as csv for the selected student by the admin(teachers), including the selected student name, its grades, GPA, and average grade
 */
 
 

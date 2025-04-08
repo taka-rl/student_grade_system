@@ -4,6 +4,22 @@
 #include "User.h"
 #include "GradeSystem.h"
 
+/*
+Admin class is inherited from the User class. 
+Attributes:
+    std::string name: the name of the admin
+    std::string password: the password of the admin
+
+Functions: the following functions are executed through GradeSystem class
+    add/remove students and subjects
+    modify students' grade
+    display all students' grades
+    display all students' average grades
+    display all students' GPA
+    display ranking by all students' average grades
+*/
+
+
 class GradeSystem; // Forward declaration
 
 class Admin : public User {

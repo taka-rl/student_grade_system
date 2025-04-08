@@ -284,6 +284,7 @@ void GradeSystem::exportUsers() const{
     File << "ID,Role,Name,Password\n";
     int id = 1;
 
+    // Admin data isn't exported correctly.
     for(const Admin &admin : admins){
         File << id++ << ",admin," << admin.getName() << "," << admin.getPassword() << "\n";
     }
@@ -328,7 +329,6 @@ User* GradeSystem::authenticate() const{
         
         if(name == inputUser && password == inputPass){
             if(role == "admin"){
-                // error
                 return new Admin(name, password);
             }else if(role == "student"){
                 // Match student from loaded grade list

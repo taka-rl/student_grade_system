@@ -8,9 +8,12 @@
 Student class represents individual students with their names and associated grades.
 Attributes
     std::string name: the name of the student
+    std::string password: the password of the student
     std::vector<int> grades: stores the grades for each subject
 Functions
-
+    display only their own grade
+    calculate their own average grade
+    calculate their own GPA
 */
 
 class Student : public User {

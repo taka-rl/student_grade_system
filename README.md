@@ -1,13 +1,14 @@
 # student_grade_system
-Currently under development to meet the requirements
-
-Base code for this project: base_src folder developed in my different project
+Currently under development to meet the requirements. 
+The purpose of this project is to **build a strong foundation of C++ knowledge and skills**.
 
 ## Requirements
 ### Functional requirements:
+    Introduce roles such as admin and student, ensuring that common functionalities and specific functionalities for both admin and student    
     add/remove students and subjects
     modify students' grade
-    calculate GPA, average grades
+    calculate GPA, 
+    display indivisual average grades
     display all students' grades
     display ranking by all students' average grades
     display grade distributions
@@ -41,9 +42,12 @@ Base code for this project: base_src folder developed in my different project
 ### Use cases
     Commons for both students and admin(teachers):
         user login/logout system
+        reset a password
         calculate GPA, average grades
         load thier grade on CSV file
-        export their grade on CSV file 
+        load user data on CSV file
+        export their grade to CSV file
+        export user data to CSV file
         add error handings, preventing invalid login, error loading grade csv, removing students or subjects that don't exist, and duplicate entries for students or subjects
 
     students:
@@ -59,6 +63,7 @@ Base code for this project: base_src folder developed in my different project
 
 ## Folder structure
     ├── data                    # 
+    |   ├── users.csv           # user data
     │   └── grades.csv          # student grade data
     ├── src                     # codes for student grade system
     │   ├── GradeSystem.cpp     # GradeSystem class
@@ -73,7 +78,7 @@ Base code for this project: base_src folder developed in my different project
 
 ## How to use
 1. compile the program with the following command in terminal
-    g++ "./src/main.cpp" "./src/GradeSystem.cpp" "./src/Student.cpp" "./src/utilities.cpp" -o "program"
+    g++ "./src/main.cpp" "./src/GradeSystem.cpp" "./src/User.cpp" "./src/Admin.cpp" "./src/Student.cpp" "./src/utilities.cpp" -o "program"
 
 2. execute program.exe 
 

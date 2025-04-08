@@ -4,6 +4,18 @@
 #include <string>
 
 
+/*
+User class represents indivisual user such as admin and student with their names, associated grades and login/logout method.
+Attributes:
+    std::string name: the name of the user
+    std::string password: the password of the user
+
+Functions: 
+    Log-in
+    reset a password
+*/
+
+
 class User {
 protected:
     std::string name;

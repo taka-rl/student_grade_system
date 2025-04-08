@@ -146,7 +146,6 @@ int main(){
         }
     }
 }
-    // Logout -> possible to Login again
 
     // Display grades before the program ends
     gradeSystem.showGrades();
