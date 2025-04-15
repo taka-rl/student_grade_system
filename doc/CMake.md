@@ -81,7 +81,9 @@ enable_testing()
 
 
 ## Build and Execute the program
-After configuring your project, you're ready to build. Open the Command Palette (Ctrl+Shift+P) and run the CMake: Build command, or select the Build button from the status bar.
+After configuring your project, you're ready to build. Open the Command Palette (Ctrl+Shift+P) and run the CMake: Build command, or select the Build button from the status bar.  
+![image](https://github.com/user-attachments/assets/0702c9f4-a852-4d69-8d3e-1ee793745793)  
+
 
 
 Reference:
