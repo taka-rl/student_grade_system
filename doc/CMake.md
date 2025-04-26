@@ -22,19 +22,19 @@ Cmake contains the following three commnad-line tools:
 1. Single source builds on multiple platforms  
 Developers are allowed to describe how to build simple and very complicated software systems with a single set of input files. This can be employed to build the software on multiple platforms from Android to iOS to Windows, macOS, and Linux, not needing to maintain a build script for each platform. It can generage a native build file for each platform. [^4] [^5]
 
-2. Out-of-source builds
+2. Out-of-source builds  
 CMake achieves out-of-source builds and gives the ability to have multiple build trees per source tree. [^5] This makes it possible to have another source file and makes developers organize a build folder more easily. [^4]
 
-3. Target-centric approach
+3. Target-centric approach  
 Developers are allowed the build to be specified as a set of targets (executables, libraries, custom commands). Each target defines what other targets it depends on directly. After that, CMake performs the build in the correct order and includes transitive link targets. [^5]
 
-4. Good combination with CI/CD
+4. Good combination with CI/CD  
 CMake works well with CI/CD, providing a clean build environment where developer can build a project with CMake set files. This enables to build, test and deploy C++ application automatically. [^4]
 
-5. Configurable build types
+5. Configurable build types  
 CMake makes it easy to configure different build types such as debug and release. It allows compiler flags to be specified, facilitating debugging capabilities and performance optimisation. [^4]
 
-6. Test support
+6. Test support  
 CMake is integrated with a testing tool called CTest, which helps manage test suites within the CMake configured build environment. This allows regression testing to be easily performed. [^4]
 
 ## Set up
