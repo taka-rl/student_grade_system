@@ -1,6 +1,6 @@
 # student_grade_system
 Currently under development to meet the requirements. 
-The purpose of this project is to **build a strong foundation of C++ knowledge and skills**.
+The purpose of this project is to **build a strong foundation of C++ knowledge and skills and deepen them**.
 
 ## Requirements
 ### Functional requirements:
@@ -74,12 +74,21 @@ The purpose of this project is to **build a strong foundation of C++ knowledge a
     │   ├── utilities.cpp       # 
     │   └── utilities.h         # 
     ├── .gitignore
+    ├── CMakeLists.txt
+    ├── CMakePresets.json       
     └── README.md
 
-## How to use
+## How to compile and execute
+- without CMake
 1. compile the program with the following command in terminal
     g++ "./src/main.cpp" "./src/GradeSystem.cpp" "./src/User.cpp" "./src/Admin.cpp" "./src/Student.cpp" "./src/utilities.cpp" -o "program"
 
 2. execute program.exe 
 
+- with CMake
+After configuring your project, you're ready to build. Open the Command Palette (Ctrl+Shift+P) and run the CMake: Build command, or select the Build button from the status bar.
 
+After the build, if student_grade_system.exe hasn't been made, run the following command in the terminal.
+```
+cmake --build out/build/student_grade_system
+```
