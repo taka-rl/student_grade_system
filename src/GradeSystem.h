@@ -40,6 +40,8 @@ public:
     // Constructor
     GradeSystem();
 
+    const std::vector<std::string> getSubjects() const;
+
     // Add a student
     void addStudent(const Student &student);
 
