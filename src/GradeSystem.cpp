@@ -11,20 +11,25 @@ using namespace std;
 // Constructor
 GradeSystem::GradeSystem() : subjects(), students(), admins() {}
 
+// Get subjects
+const std::vector<std::string> GradeSystem::getSubjects() const{
+    return subjects;
+}
+
 // Add a student
-void GradeSystem::addStudent(const Student &student) {
+void GradeSystem::addStudent(const Student &student){
     students.push_back(student);
 }
 
 // Remove a student by name
-void GradeSystem::removeStudent(const std::string &name) {
+void GradeSystem::removeStudent(const std::string &name){
     students.erase(std::remove_if(students.begin(), students.end(),
                                   [&](const User &s) { return s.getName() == name; }),
                    students.end());
 }
 
 // Add a subject
-void GradeSystem::addSubject(const std::string &subject) {
+void GradeSystem::addSubject(const std::string &subject){
     subjects.push_back(subject);
     for (Student &student : students) {
         std::vector<int> grades = student.getGrades();
@@ -281,7 +286,7 @@ void GradeSystem::exportUsers() const{
         return;
     }
 
-    File << "ID,Role,Name,Password\n";
+    File << "id,role,name,password\n";
     int id = 1;
 
     // Admin data isn't exported correctly.

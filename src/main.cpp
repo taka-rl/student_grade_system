@@ -58,6 +58,14 @@ int main(){
                     // Temporal password
                     newPassword = "012345";
 
+                    // Set grade for each subject
+                    for(const auto& subject : gradeSystem.getSubjects()){
+                        int grade;
+                        cout << "Enter grade for " << subject << ":";
+                        cin >> grade;
+                        newGrades.push_back(grade);
+                    }
+
                     newStudent = {newStudentName, newPassword, newGrades};
                     cout << "\nAdding a new student: " << newStudentName << endl;;
                     admin->addStudent(gradeSystem, newStudent);
