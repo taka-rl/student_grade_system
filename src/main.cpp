@@ -18,6 +18,9 @@ int main(){
     string studentName, subjectName;
     int newGrade;
 
+    // student grades to display
+    std::vector<int> grades;
+
     // Load grades from CSV
     gradeSystem.loadGrades();
 
@@ -149,11 +152,14 @@ int main(){
             switch(choice){
                 case 1:
                 cout << "Display the own grade\n" << endl;
-                student->getGrades();
+                grades = student->getGrades();
+                for(size_t i = 0; i < grades.size(); ++i){
+                    cout << gradeSystem.getSubjects()[i] << ": " << grades[i] << "\n";
+                }
                 break;
             case 2:
                 cout << "Calculate the average grade\n" << endl;
-                student->calculateAverage();
+                cout << "Average Grade: " << student->calculateAverage() << endl;
                 break;
             case 3:
                 cout << "Calculate GPA\n" << endl;
