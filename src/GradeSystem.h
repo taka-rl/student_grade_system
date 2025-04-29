@@ -68,7 +68,7 @@ public:
     void calculateStudentAverages() const;
 
     // Calculate GPA
-    void calculateGpa(const int scale) const;
+    void calculateGpa(const int &scale) const;
 
     // Display Ranking by average grades
     void displayRank() const;

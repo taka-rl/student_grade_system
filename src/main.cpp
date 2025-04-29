@@ -165,7 +165,7 @@ int main(){
                 cout << "Calculate GPA\n" << endl;
                 cout << "Enter a scale for GPA: ";
                 cin >> scale;
-                gradeSystem.calculateGpa(scale);
+                cout << "Your GPA: " << student->calculateGPA(scale) << endl;
                 break;
             case 4:
                 cout << "Reset password" << endl;

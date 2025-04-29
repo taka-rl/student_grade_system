@@ -147,7 +147,7 @@ void GradeSystem::calculateStudentAverages() const {
 }
 
 // Calculate GPA
-void GradeSystem::calculateGpa(const int scale) const{
+void GradeSystem::calculateGpa(const int &scale) const{
     /*
     Converted to any scales
     Converted GPA = Original grade points / Original scale * New scale
