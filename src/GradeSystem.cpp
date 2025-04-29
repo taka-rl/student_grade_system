@@ -88,6 +88,42 @@ void GradeSystem::showGrades() const {
     }
 }
 
+// Modify a grade
+void GradeSystem::modifyGrade(const std::string &studentName, const std::string &subjectName, const int &newGrade){
+    
+    // find the student
+    auto studentIt = std::find_if(students.begin(), students.end(), [&](const Student &s){
+        return s.getName() == studentName;
+    });
+
+    if(studentIt == students.end()){
+        std::cerr << "Student " << studentName << " not found.\n";
+        return;
+    }
+
+    // find the subject index
+    auto subjectIt = std::find(subjects.begin(), subjects.end(), subjectName);
+    if(subjectIt == subjects.end()){
+        std::cerr << "Subject " << subjectName << " not found.\n";
+        return;
+    }
+    size_t subjectIndex = std::distance(subjects.begin(), subjectIt);
+
+    // update the grade
+    std::vector<int> grades = studentIt->getGrades();
+    if(subjectIndex >= grades.size()){
+        std::cerr << "Grade index out of bounds.\n";
+        return;
+    }
+    grades[subjectIndex] = newGrade;
+
+    // update the student's grades
+    studentIt->setGrades(grades);
+
+    std::cout << "Grade updated successfully for " << studentName << " in " << subjectName << ".\n";
+
+}
+
 // Calculate subject average grade
 void GradeSystem::calculateSubjectAverage() const {
     for (size_t i = 0; i < subjects.size(); i++) {

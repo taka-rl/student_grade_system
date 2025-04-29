@@ -37,6 +37,7 @@ public:
     void addSubject(GradeSystem &system, const std::string &subject);
     void removeSubject(GradeSystem &system, const std::string &subject);
     void showGrades(GradeSystem &system);
+    void modifyGrade(GradeSystem &system, const std::string &studentName, const std::string &subjectName, const int &newGrade);
     void calculateSubjectAverage(GradeSystem &system);
     void calculateGpa(GradeSystem &system, const int scale);
     void displayRank(GradeSystem &system);

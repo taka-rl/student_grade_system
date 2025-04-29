@@ -14,6 +14,10 @@ int main(){
     int action = 0;
     User* loggedInUser = nullptr;
 
+    // modify a grade
+    string studentName, subjectName;
+    int newGrade;
+
     // Load grades from CSV
     gradeSystem.loadGrades();
 
@@ -47,7 +51,7 @@ int main(){
             admin->displayMenu();
             cout << "Enter: ";
             cin >> choice;
-            if(choice == 10) break;
+            if(choice == 11) break;
 
             switch(choice){
                 case 1:
@@ -90,31 +94,44 @@ int main(){
                     break;
                 case 5:
                     cout << "show grades" << endl;
-                    gradeSystem.showGrades();
-                    break;    
+                    admin->showGrades(gradeSystem);
+                    break;
                 case 6:
+                    cout << "Modify a grade" << endl;
+
+                    cout << "Enter student name: ";
+                    cin >> studentName;
+                    cout << "Enter a subject: ";
+                    cin >> subjectName;
+                    cout << "Enter new grade: ";
+                    cin >> newGrade;
+
+                    admin->modifyGrade(gradeSystem, studentName, subjectName, newGrade);
+                    break;
+
+                case 7:
                     cout << "calculate the subject average grade" << endl;
                     gradeSystem.calculateSubjectAverage();
     
                     cout << "calculate the student average grade" << endl;
                     gradeSystem.calculateStudentAverages();
                     break;
-                case 7:
+                case 8:
                     cout << "calculate GPA" << endl;
                     cout << "Enter a scale for GPA: ";
                     cin >> scale;
                     gradeSystem.calculateGpa(scale);
                     break;
-                case 8:
+                case 9:
                     cout << "Display ranking by average grades" << endl;
                     gradeSystem.displayRank();
                     break;
-                case 9:
+                case 10:
                     cout << "Display grade distributions" << endl;
                     gradeSystem.displayDistribution();
                     break;                
                 default:
-                    cout << "Select from 1 to 9" << endl;
+                    cout << "Select from 1 to 11" << endl;
                     break;
             }
         }

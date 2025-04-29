@@ -40,6 +40,7 @@ public:
     // Constructor
     GradeSystem();
 
+    // Get subjects
     const std::vector<std::string> getSubjects() const;
 
     // Add a student
@@ -56,6 +57,9 @@ public:
 
     // Display all grades
     void showGrades() const;
+
+    // Modify a grade
+    void modifyGrade(const std::string &studentName, const std::string &subjectName, const int &newGrade);
 
     // Calculate subject average
     void calculateSubjectAverage() const;

@@ -1,0 +1,153 @@
+Things that I have learned through this project
+
+Range-Based for loop
+    It constructs a for loop which must execute through a range defined as anything that you can iterate through,
+    for example, std::vector, or any other C++ Standard Library sequence whose range is defined by a begin() and end().
+    https://learn.microsoft.com/en-us/cpp/cpp/range-based-for-statement-cpp?view=msvc-170
+
+    Since C++ 11
+    It executes a for loop over a range
+    https://en.cppreference.com/w/cpp/language/range-for
+
+    for(range_declaration : range_expression ){
+        Loop Statement
+    }
+
+    Ex:
+        // the initializer may be a braced-init-list
+        for (int n : { 0, 1, 2, 3, 4, 5 })
+            cout << n << ' ';
+        cout << '\n';
+        -> 0 1 2 3 4 5
+        // Iterating over array
+        int a[] = { 0, 1, 2, 3, 4, 5 };
+        for (int n : a)
+            cout << n << ' ';
+        cout << '\n';
+        -> 0 1 2 3 4 5
+    https://www.geeksforgeeks.org/range-based-loop-c/
+
+    Another Ex:
+        for(const Student &student : students){
+            studentRanks.emplace_back(student.getName(), student.calculateAverage());
+        }
+        const: 
+            use if you don't intend to change the Student objects while Iterating
+        &(Reference)
+            use if you want to avoid copying each Student object. 
+            without &, each iteration would involve creating a copy of the Student object, which is unnecessary overhead in this case.
+            https://www.programiz.com/cpp-programming/ranged-for-loop
+
+
+
+auto type
+
+push_back()
+emplace_back()
+https://www.geeksforgeeks.org/push_back-vs-emplace_back-in-cpp-stl-vectors/
+
+
+std::pair
+    It is a class template that provides a way to store two heterogeneous objects as a single unit.
+    A pair is a specific case of a std::tuple with two elements.
+    https://en.cppreference.com/w/cpp/utility/pair
+
+    It is used to combine together two values that may be of different data types.
+    It is used if we want to store tuples.
+    The first element is referenced as 'first', and the second element as 'second' and the order is fixed. (first, second)
+    We use variable name followed by dot operator with the keyword such as 'first' or 'second'.
+    https://www.geeksforgeeks.org/pair-in-cpp-stl/
+
+    std::pair<datatype, datatype> variable name;
+    access to elements of pair
+        var.first, var.second
+
+    Other link: https://www.programming-books.io/essential/cpp/stdpair-db03800f1091419fbb8be6357b79b0ee#15fe6e2e-86f8-45cb-8286-e05453907800
+
+std::map
+    Is is a class template provided by Standard Library, and is a sorted associative container that includes key-value pairs with unique keys.
+    To use it, define #include <map>
+    https://en.cppreference.com/w/cpp/container/map
+    https://learn.microsoft.com/en-us/cpp/standard-library/map-class?view=msvc-170
+
+    std::map<datatype, datatype> variable name;
+
+
+std::find returns an iterator pointing to the first occurrence of a specified value in a data range. If the value is not found then it returns the iterator pointing to the end of the data range.
+Syntax: std::find(iterator start, iterator end, target value);
+https://www.w3schools.com/cpp/ref_algorithm_find.asp
+
+std::find_if returns an iterator to the first element in the range [first, last) for which pred(Unary Function) returns true. If no such element is found, the function returns last.
+Syntax: std::find_if(iterator start, iterator end, target value)
+https://www.w3schools.com/cpp/ref_algorithm_find_if.asp
+
+
+lambda expression:
+    It is used often with algorithms like find_if.
+    Syntax: [capture-clause] (parameters) -> return-type{
+        // definition
+    }
+
+    For example:
+        auto studentIt = std::find_if(students.begin(), students.end(), [&](const Student &s){
+            return s.getName() == studentName;
+        });
+
+    Capture Clause:
+    [&]: capture all external variables by reference.
+    [=]: capture all external variables by value.
+    [a, &b]: capture ‘a’ by value and ‘b’ by reference.
+
+Function argument: https://www.quantstart.com/articles/Passing-By-Reference-To-Const-in-C/
+    There are three different ways to pass to a function. They are respectively by value, by reference and by pointer.
+    Example function to be used. 
+        Consider a norm function which calculates the Euclidean norm of a vector of double values. 
+        The function returns one double precision value ("the norm") and takes the vector as a parameter. The following code shows the vector being passed by value:
+            
+            double euclid_norm(vector<double> my_vector);
+
+    Passing by Value:
+        Copies the object. Modification does not affect the original.
+
+        When a function receives an object (or built-in type) by value, the underlying object is copied using its copy constructor. 
+        The new object has additional memory allocated to it and all values and sub-objects are copied and stored separately. 
+        If the object passed is a built-in type such as an int or double value then the copying process is cheap and will often not impact performance. 
+        However if the passed object includes a lot of stored values, such as a vector or matrix then the copying process will be significant in terms of both storage and CPU cycles.
+
+    Passing by Reference:
+        No copy. It modifies the original object directly.
+
+        When a function reveives an object (or built-in type) by reference, the underlying object is not copied. The memory address of the object itself gives the function. 
+        This saves both memory and CPU cycles as no new memory is allocated and no (expensive) copy constructors are being called. It is a much more efficient operation.
+        If the function being passed the object now modifies the object in any way, the original object will reflect those modifications, rather than a copy of the object. 
+        In some instances this is exactly what is intended. In other situations this may not be the desired behaviour. Once again there is the possibility of bugs! 
+        In particular the vector norm function as described above should not be able to modify the passed vector object.
+            
+            double euclid_norm(vector<double>& my_vector);
+
+    Passing by Reference to Const:
+        No copy and does not allow modification(safe and efficient). 
+
+        In order to solve the problem of not copying AND not modifying the underlying data a technique known as passing by reference to const is used. 
+        This is similar to passing by reference except that we mark the my_vector parameter as a const object. 
+        This tells euclid_norm not to modify my_vector within its own scope:
+            
+            double euclid_norm(const vector<double>& my_vector);
+        
+        The const keyword marks my_vector as non-modifiable, while the reference symbol (&) states that it should not be copied. 
+        Nearly all instances of mathematical "read only" functions should be prefixed in this manner. 
+        Not only is the client interface clearer, but it is highly efficient and will not introduce data overwriting bugs. 
+        The only exception to this is when passing built-in types. The copying of such data is inexpensive and thus you can simply pass by value.
+
+
+
+Struck
+OOP
+override
+virtual
+inheritance
+private
+public 
+protected
+
+pointer
