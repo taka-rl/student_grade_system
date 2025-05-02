@@ -11,20 +11,25 @@ using namespace std;
 // Constructor
 GradeSystem::GradeSystem() : subjects(), students(), admins() {}
 
+// Get subjects
+const std::vector<std::string> GradeSystem::getSubjects() const{
+    return subjects;
+}
+
 // Add a student
-void GradeSystem::addStudent(const Student &student) {
+void GradeSystem::addStudent(const Student &student){
     students.push_back(student);
 }
 
 // Remove a student by name
-void GradeSystem::removeStudent(const std::string &name) {
+void GradeSystem::removeStudent(const std::string &name){
     students.erase(std::remove_if(students.begin(), students.end(),
                                   [&](const User &s) { return s.getName() == name; }),
                    students.end());
 }
 
 // Add a subject
-void GradeSystem::addSubject(const std::string &subject) {
+void GradeSystem::addSubject(const std::string &subject){
     subjects.push_back(subject);
     for (Student &student : students) {
         std::vector<int> grades = student.getGrades();
@@ -83,6 +88,42 @@ void GradeSystem::showGrades() const {
     }
 }
 
+// Modify a grade
+void GradeSystem::modifyGrade(const std::string &studentName, const std::string &subjectName, const int &newGrade){
+    
+    // find the student
+    auto studentIt = std::find_if(students.begin(), students.end(), [&](const Student &s){
+        return s.getName() == studentName;
+    });
+
+    if(studentIt == students.end()){
+        std::cerr << "Student " << studentName << " not found.\n";
+        return;
+    }
+
+    // find the subject index
+    auto subjectIt = std::find(subjects.begin(), subjects.end(), subjectName);
+    if(subjectIt == subjects.end()){
+        std::cerr << "Subject " << subjectName << " not found.\n";
+        return;
+    }
+    size_t subjectIndex = std::distance(subjects.begin(), subjectIt);
+
+    // update the grade
+    std::vector<int> grades = studentIt->getGrades();
+    if(subjectIndex >= grades.size()){
+        std::cerr << "Grade index out of bounds.\n";
+        return;
+    }
+    grades[subjectIndex] = newGrade;
+
+    // update the student's grades
+    studentIt->setGrades(grades);
+
+    std::cout << "Grade updated successfully for " << studentName << " in " << subjectName << ".\n";
+
+}
+
 // Calculate subject average grade
 void GradeSystem::calculateSubjectAverage() const {
     for (size_t i = 0; i < subjects.size(); i++) {
@@ -106,7 +147,7 @@ void GradeSystem::calculateStudentAverages() const {
 }
 
 // Calculate GPA
-void GradeSystem::calculateGpa(const int scale) const{
+void GradeSystem::calculateGpa(const int &scale) const{
     /*
     Converted to any scales
     Converted GPA = Original grade points / Original scale * New scale
@@ -167,10 +208,9 @@ void GradeSystem::displayDistribution() const{
     }
 }
 
-// Load grades
-// This function will be refactored later when considering the use of pointer.
-void GradeSystem::loadGrades(){
-    // Get a password
+// Import user data and student grades
+void GradeSystem::loadData(){
+    // Load user data
     std::map<std::string, std::string> studentPasswords;
     std::ifstream usersFile(create_csv_path("users.csv"));
     std::string userLine;
@@ -183,10 +223,16 @@ void GradeSystem::loadGrades(){
         getline(ss, name, ',');
         getline(ss, password, ',');
 
-        if(role == "student") {
+        if(role == "admin"){
+            admins.emplace_back(name, password);
+        }
+
+        if(role == "student"){
             studentPasswords[name] = password;
         }
     }
+
+    usersFile.close();
 
     // Load grades
     string file_path = create_csv_path("grades.csv");
@@ -197,7 +243,6 @@ void GradeSystem::loadGrades(){
         cerr << "Error opening file for reading" << endl;
         return;
     }
-
     
     string line;
     size_t row = 0;
@@ -234,7 +279,7 @@ void GradeSystem::loadGrades(){
 
         // Create a Student object and add it to the students vector
         // Add code to get each password for each student and set it.
-        std::string password = studentPasswords.count(studentName) ? studentPasswords[studentName] : "67890";
+        std::string password = studentPasswords.count(studentName) ? studentPasswords[studentName] : "012345";
         students.emplace_back(studentName, password, studentGrades);
     }
 
@@ -281,7 +326,7 @@ void GradeSystem::exportUsers() const{
         return;
     }
 
-    File << "ID,Role,Name,Password\n";
+    File << "id,role,name,password\n";
     int id = 1;
 
     // Admin data isn't exported correctly.
@@ -296,8 +341,7 @@ void GradeSystem::exportUsers() const{
     std::cout << "User data exported successfully to users.csv\n";
 }
 
-
-User* GradeSystem::authenticate() const{
+User* GradeSystem::authenticate(){
     // Definition for login
     string inputUser, inputPass;
 
@@ -329,12 +373,15 @@ User* GradeSystem::authenticate() const{
         
         if(name == inputUser && password == inputPass){
             if(role == "admin"){
-                return new Admin(name, password);
+                for(Admin &admin : admins){
+                    if(admin.getName() == name){
+                        return &admin;
+                    }
+                }
             }else if(role == "student"){
-                // Match student from loaded grade list
-                for(const Student &student : students){
+                for(Student &student : students){
                     if(student.getName() == name){
-                        return new Student(student);
+                        return &student;
                     }
                 }
             }

@@ -40,6 +40,9 @@ public:
     // Constructor
     GradeSystem();
 
+    // Get subjects
+    const std::vector<std::string> getSubjects() const;
+
     // Add a student
     void addStudent(const Student &student);
 
@@ -55,6 +58,9 @@ public:
     // Display all grades
     void showGrades() const;
 
+    // Modify a grade
+    void modifyGrade(const std::string &studentName, const std::string &subjectName, const int &newGrade);
+
     // Calculate subject average
     void calculateSubjectAverage() const;
 
@@ -62,7 +68,7 @@ public:
     void calculateStudentAverages() const;
 
     // Calculate GPA
-    void calculateGpa(const int scale) const;
+    void calculateGpa(const int &scale) const;
 
     // Display Ranking by average grades
     void displayRank() const;
@@ -70,8 +76,8 @@ public:
     // Display grade distirbution
     void displayDistribution() const;
 
-    // Load grades
-    void loadGrades();
+    // Import user data and student grades
+    void loadData();
 
     // Export grades
     void exportGrades() const;
@@ -80,7 +86,7 @@ public:
     void exportUsers() const;
 
     // Login
-    User* authenticate() const;
+    User* authenticate();
 };
 
 #endif // GRADESYSTEM_H

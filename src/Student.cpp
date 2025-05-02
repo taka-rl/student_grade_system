@@ -26,7 +26,14 @@ std::vector<int> Student::getGrades() const { return grades; }
 void Student::setGrades(const std::vector<int> &newGrades) { grades = newGrades; }
 
 // Calculate average grade
-float Student::calculateAverage() const {
-    if (grades.empty()) return 0.0f;
+float Student::calculateAverage() const{
+    if(grades.empty()) return 0.0f;
     return static_cast<float>(std::accumulate(grades.begin(), grades.end(), 0)) / grades.size();
+}
+
+// Calculate GPA
+float Student::calculateGPA(const int &scale){
+    if(grades.empty()) return 0.0f;
+    float avg = calculateAverage();
+    return (avg / 5.0f) * scale;
 }

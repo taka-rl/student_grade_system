@@ -34,6 +34,9 @@ public:
 
     // Function to calculate average grade
     float calculateAverage() const;
+
+    // Calculate GPA
+    float calculateGPA(const int &scale);
 };
 
 #endif // STUDENT_H

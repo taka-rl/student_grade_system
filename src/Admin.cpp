@@ -19,11 +19,12 @@ void Admin::displayMenu() const {
     cout << "3. Remove a student\n";
     cout << "4. Remove a subject\n";
     cout << "5. Show grades\n";
-    cout << "6. Calculate the average grades\n";
-    cout << "7. Calculate GPA\n";
-    cout << "8. Display ranking by average grades\n";
-    cout << "9. Display grade distributions\n";        
-    cout << "10. End this program\n";
+    cout << "6. Modify a grade\n";
+    cout << "7. Calculate the average grades\n";
+    cout << "8. Calculate GPA\n";
+    cout << "9. Display ranking by average grades\n";
+    cout << "10. Display grade distributions\n";        
+    cout << "11. End this program\n";
 }
 
 // Admin only operations
@@ -50,6 +51,11 @@ void Admin::removeSubject(GradeSystem &system, const std::string &subject) {
 // Display all grades
 void Admin::showGrades(GradeSystem &system) {
     system.showGrades();
+}
+
+// Modify a grade
+void Admin::modifyGrade(GradeSystem &system, const std::string &studentName, const std::string &subjectName, const int &newGrade){
+    system.modifyGrade(studentName, subjectName, newGrade);
 }
 
 // Calculate subject average
