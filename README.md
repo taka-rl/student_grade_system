@@ -92,3 +92,9 @@ After the build, if student_grade_system.exe hasn't been made, run the following
 ```
 cmake --build out/build/student_grade_system
 ```
+
+## Future development plan
+- Integrate unit testing
+- Learn Smart Pointers and apply it
+- Consider GUI/CLI menu to improve user experience
+- 
