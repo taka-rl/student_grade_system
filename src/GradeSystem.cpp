@@ -416,8 +416,7 @@ void GradeSystem::exportUsers() const{
     std::cout << "User data exported successfully to users.csv\n";
 }
 
-
-User* GradeSystem::authenticate() const{
+User* GradeSystem::authenticate(){
     // Definition for login
     string inputUser, inputPass;
 
@@ -449,12 +448,15 @@ User* GradeSystem::authenticate() const{
         
         if(name == inputUser && password == inputPass){
             if(role == "admin"){
-                return new Admin(name, password);
+                for(Admin &admin : admins){
+                    if(admin.getName() == name){
+                        return &admin;
+                    }
+                }
             }else if(role == "student"){
-                // Match student from loaded grade list
-                for(const Student &student : students){
+                for(Student &student : students){
                     if(student.getName() == name){
-                        return new Student(student);
+                        return &student;
                     }
                 }
             }

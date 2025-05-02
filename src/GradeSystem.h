@@ -89,7 +89,7 @@ public:
     void exportUsers() const;
 
     // Login
-    User* authenticate() const;
+    User* authenticate();
 };
 
 #endif // GRADESYSTEM_H
