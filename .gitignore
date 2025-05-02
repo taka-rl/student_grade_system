@@ -31,5 +31,9 @@
 *.out
 *.app
 
-# Ignore built program related 
+# VScode
+.vscode
+
+# Ignore built program and CMake related 
 out/
+CMakeFiles/
