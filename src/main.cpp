@@ -22,7 +22,6 @@ int main(){
     std::vector<int> grades;
 
     // Load grades from CSV
-    // gradeSystem.loadGrades();
     gradeSystem.loadData();
 
     // Login

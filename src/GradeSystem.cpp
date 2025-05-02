@@ -210,87 +210,7 @@ void GradeSystem::displayDistribution() const{
 
 // Import user data and student grades
 void GradeSystem::loadData(){
-
     // Load user data
-    std::map<std::string, std::string> adminPasswords, studentPasswords;
-    std::ifstream usersFile(create_csv_path("users.csv"));
-    std::string userLine;
-    getline(usersFile, userLine); // Skip header
-    while(getline(usersFile, userLine)){
-        std::stringstream ss(userLine);
-        std::string id, role, name, password;
-        getline(ss, id, ',');
-        getline(ss, role, ',');
-        getline(ss, name, ',');
-        getline(ss, password, ',');
-
-        if(role == "admin"){
-            adminPasswords[name] = password;
-            admins.emplace_back(name, password);
-        }
-
-        if(role == "student"){
-            studentPasswords[name] = password;
-        }
-    }
-
-    // Load grades
-    string file_path = create_csv_path("grades.csv");
-    cout << "Attempting to open file at: " << file_path << endl;
-
-    ifstream inFile(file_path);
-    if(!inFile){
-        cerr << "Error opening file for reading" << endl;
-        return;
-    }
-    
-    string line;
-    size_t row = 0;
-
-    subjects.clear();
-    students.clear();
-
-    // Read subjects (first row)
-    if(getline(inFile, line)){
-        stringstream ss(line);
-        string cell;
-
-        // Skip the "Name" header
-        getline(ss, cell, ','); 
-        while(getline(ss, cell, ',')){
-            subjects.push_back(cell);
-        }
-    }
-
-    // Read student names and grades
-    while(getline(inFile, line)){
-        stringstream ss(line);
-        string cell;
-
-        // Read student name
-        if(!getline(ss, cell, ',')) continue;
-            string studentName = cell;
-
-        // Read grades
-        std::vector<int> studentGrades;
-        while(getline(ss, cell, ',')){
-            studentGrades.push_back(std::stoi(cell)); // Convert string to int
-        }
-
-        // Create a Student object and add it to the students vector
-        // Add code to get each password for each student and set it.
-        std::string password = studentPasswords.count(studentName) ? studentPasswords[studentName] : "67890";
-        students.emplace_back(studentName, password, studentGrades);
-    }
-
-    inFile.close();
-    cout << "Grades successfully loaded from: " << file_path << endl;
-}
-
-// Load grades
-// This function will be refactored later when considering the use of pointer.
-void GradeSystem::loadGrades(){
-    // Get a password
     std::map<std::string, std::string> studentPasswords;
     std::ifstream usersFile(create_csv_path("users.csv"));
     std::string userLine;
@@ -303,10 +223,16 @@ void GradeSystem::loadGrades(){
         getline(ss, name, ',');
         getline(ss, password, ',');
 
-        if(role == "student") {
+        if(role == "admin"){
+            admins.emplace_back(name, password);
+        }
+
+        if(role == "student"){
             studentPasswords[name] = password;
         }
     }
+
+    usersFile.close();
 
     // Load grades
     string file_path = create_csv_path("grades.csv");
@@ -317,7 +243,6 @@ void GradeSystem::loadGrades(){
         cerr << "Error opening file for reading" << endl;
         return;
     }
-
     
     string line;
     size_t row = 0;
@@ -354,7 +279,7 @@ void GradeSystem::loadGrades(){
 
         // Create a Student object and add it to the students vector
         // Add code to get each password for each student and set it.
-        std::string password = studentPasswords.count(studentName) ? studentPasswords[studentName] : "67890";
+        std::string password = studentPasswords.count(studentName) ? studentPasswords[studentName] : "012345";
         students.emplace_back(studentName, password, studentGrades);
     }
 

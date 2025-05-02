@@ -79,9 +79,6 @@ public:
     // Import user data and student grades
     void loadData();
 
-    // Load grades
-    void loadGrades();
-
     // Export grades
     void exportGrades() const;
 
