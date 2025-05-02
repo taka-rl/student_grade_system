@@ -32,7 +32,17 @@ Range-Based for loop
             studentRanks.emplace_back(student.getName(), student.calculateAverage());
         }
         const: 
-            use if you don't intend to change the Student objects while Iterating
+            use if you don't intend to change the Student objects while Iterating. 
+            If you want to return &student, you can't write like "for(const Student &student : students){" because this function returns non-const User*.
+            This function returns pointer to actual object(student in this case).    
+                User* GradeSystem::authenticate(){
+                    for(Student &student : students){
+                        if(student.getName() == name){
+                            return &student;
+                        }
+                    }
+                }
+            
         &(Reference)
             use if you want to avoid copying each Student object. 
             without &, each iteration would involve creating a copy of the Student object, which is unnecessary overhead in this case.
@@ -40,12 +50,22 @@ Range-Based for loop
 
 
 
-auto type
+auto directly tells the compiler to use the initialization expression of a declared variable, or lambda expression parameter, to deduce its type.
+It is recommneded to use auto for most situations decause of the following merits.
+- Robustness: If the expression's type is changed including when a function return type is changed, It just works.
+- Performance: This ensures that there's no conversion.
+- Usability: Don't need to worry about type name spelling difficulties and typos.
+- Efficiency: Your coding can be more efficient. 
+https://learn.microsoft.com/en-us/cpp/cpp/auto-cpp?view=msvc-170
 
-push_back()
-emplace_back()
+push_back() and emplace_back() are two ways of inserting an element in a vector. 
+push_back() is used to insert elements in a vector from the end of the container. 
+emplace_back() uses parameterized constructor and allocates it into a different memory, then passing it to the copy constructor, which will insert it into the vector. 
 https://www.geeksforgeeks.org/push_back-vs-emplace_back-in-cpp-stl-vectors/
 
+Use push_back() when you have an exisiting temporary object that you want to move into your vector.
+Use emplace_back() when you create a new temporary object. Instead of creating that temporary object, pass the object's constructor arguments directly to emplace_back().
+https://andreasfertig.com/blog/2023/04/push_back-vs-emplace_back-when-to-use-what/
 
 std::pair
     It is a class template that provides a way to store two heterogeneous objects as a single unit.
@@ -138,7 +158,6 @@ Function argument: https://www.quantstart.com/articles/Passing-By-Reference-To-C
         Nearly all instances of mathematical "read only" functions should be prefixed in this manner. 
         Not only is the client interface clearer, but it is highly efficient and will not introduce data overwriting bugs. 
         The only exception to this is when passing built-in types. The copying of such data is inexpensive and thus you can simply pass by value.
-
 
 
 Struck
