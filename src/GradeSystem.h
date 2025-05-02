@@ -76,6 +76,9 @@ public:
     // Display grade distirbution
     void displayDistribution() const;
 
+    // Import user data and student grades
+    void loadData();
+
     // Load grades
     void loadGrades();
 
