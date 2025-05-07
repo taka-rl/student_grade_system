@@ -62,30 +62,37 @@ The purpose of this project is to **build a strong foundation of C++ knowledge a
         generate a report as csv, including the specific student name, its grades, GPA, and average grade
 
 ## Folder structure
-    ├── data                    # 
-    |   ├── users.csv           # user data
-    │   └── grades.csv          # student grade data
-    ├── src                     # codes for student grade system
-    │   ├── GradeSystem.cpp     # GradeSystem class
-    │   ├── GradeSystem.h       # 
-    │   ├── main.cpp            # 
-    │   ├── Student.cpp         # 
-    │   ├── Student.h           # 
-    │   ├── utilities.cpp       # 
-    │   └── utilities.h         # 
+    ├── data                    # User and grade data
+    |   ├── users.csv           
+    │   └── grades.csv          
+    ├── doc                     # Documents for this repository
+    |   ├── CMake.md            # Document about CMake
+    │   └── note.txt            # Document about C++ programming through this project
+    ├── include                 # Header files
+    │   ├── GradeSystem.h       
+    │   ├── User.h            
+    │   ├── Admin.h             
+    │   ├── Student.h           
+    │   └── utilities.h
+    ├── src                     # Source files
+    │   ├── GradeSystem.cpp
+    │   ├── main.cpp             
+    │   ├── User.cpp          
+    │   ├── Admin.cpp          
+    │   ├── Student.cpp        
+    │   ├── utilities.cpp      
     ├── .gitignore
-    ├── CMakeLists.txt
-    ├── CMakePresets.json       
-    └── README.md
+    ├── CMakeLists.txt         # Build configuration
+    └── README.md              # Project overview
 
 ## How to compile and execute
-- without CMake
+- without CMake  
 1. compile the program with the following command in terminal
     g++ "./src/main.cpp" "./src/GradeSystem.cpp" "./src/User.cpp" "./src/Admin.cpp" "./src/Student.cpp" "./src/utilities.cpp" -o "program"
 
 2. execute program.exe 
 
-- with CMake
+- with CMake  
 After configuring your project, you're ready to build. Open the Command Palette (Ctrl+Shift+P) and run the CMake: Build command, or select the Build button from the status bar.
 
 After the build, if student_grade_system.exe hasn't been made, run the following command in the terminal.

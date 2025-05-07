@@ -1,7 +1,8 @@
 id,role,name,password
-1,student,Tom,0123
-2,student,Ken,456
-3,student,Marry,789
-4,admin,Jesus,Jesus
-5,admin,Taka,takataka
-6,student,Kutya,dog
+1,admin,Taka,takataka
+2,admin,Jesus,Jesus
+3,student,Tom,0123
+4,student,Ken,456
+5,student,Marry,789
+6,student,Jusa,67890
+7,student,abc,12345
