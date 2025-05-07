@@ -67,7 +67,7 @@ The purpose of this project is to **build a strong foundation of C++ knowledge a
     │   └── grades.csv          
     ├── doc                     # Documents for this repository
     |   ├── CMake.md            # Document about CMake
-    │   └── note.txt            # Document about C++ programming through this project
+    │   └── note.md             # Document about C++ programming through this project
     ├── include                 # Header files
     │   ├── GradeSystem.h       
     │   ├── User.h            
@@ -104,4 +104,4 @@ cmake --build out/build/student_grade_system
 - Integrate unit testing
 - Learn Smart Pointers and apply it
 - Consider GUI/CLI menu to improve user experience
-- 
+- Exceptional handling
