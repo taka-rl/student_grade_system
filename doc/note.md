@@ -475,3 +475,18 @@ Use = 0 (pure virtual) when:
 | `virtual`      | Enables runtime polymorphism (can override in child classes) |
 | `virtual ... = 0`      | Pure virtual = abstract class; must be implemented in derived classes  |
 | `~User() = default;`  | Declares a virtual destructor to ensure correct cleanup of derived classes via base pointer (important) |
+
+
+## Compile
+```bash
+# win / macOS (clang++) – works the same with Homebrew g++ too
+g++ -std=c++17 -Iinclude src/*.cpp -o program
+# or, if you want to list files explicitly:
+g++ -std=c++17 -Iinclude ./src/main.cpp ./src/GradeSystem.cpp ./src/User.cpp ./src/Admin.cpp ./src/Student.cpp ./src/utilities.cpp -o program
+
+```
+| Keyword | Description |
+|--------|----------------------|
+| `g++`      | Represent a compiler driver. eg. clang++ |
+| `-std=c++17`      | Select the C++ standard. eg. -std=c++20, c++11  |
+| `-I{foldername}`  | Add a header search path and the compiler searches the directory of the current `.cpp` file, your `-I` paths and system include paths. foldername shall be the folder including header files. `-Iinclude` means `include` is a folder that contains header files. |

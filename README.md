@@ -88,7 +88,14 @@ The purpose of this project is to **build a strong foundation of C++ knowledge a
 ## How to compile and execute
 - without CMake  
 1. compile the program with the following command in terminal
-    g++ "./src/main.cpp" "./src/GradeSystem.cpp" "./src/User.cpp" "./src/Admin.cpp" "./src/Student.cpp" "./src/utilities.cpp" -o "program"
+
+```bash
+# win / macOS (clang++) – works the same with Homebrew g++ too
+g++ -std=c++17 -Iinclude src/*.cpp -o program
+# or, if you want to list files explicitly:
+g++ -std=c++17 -Iinclude ./src/main.cpp ./src/GradeSystem.cpp ./src/User.cpp ./src/Admin.cpp ./src/Student.cpp ./src/utilities.cpp -o program
+
+```
 
 2. execute program.exe 
 
