@@ -80,7 +80,9 @@ The purpose of this project is to **build a strong foundation of C++ knowledge a
     │   ├── User.cpp          
     │   ├── Admin.cpp          
     │   ├── Student.cpp        
-    │   ├── utilities.cpp      
+    │   ├── utilities.cpp
+    ├── output                 # .exe file after build
+    │   └── program.exe
     ├── .gitignore
     ├── CMakeLists.txt         # Build configuration
     └── README.md              # Project overview
@@ -91,9 +93,9 @@ The purpose of this project is to **build a strong foundation of C++ knowledge a
 
 ```bash
 # win / macOS (clang++) – works the same with Homebrew g++ too
-g++ -std=c++17 -Iinclude src/*.cpp -o program
+g++ -std=c++17 -Iinclude src/*.cpp -o output/program
 # or, if you want to list files explicitly:
-g++ -std=c++17 -Iinclude ./src/main.cpp ./src/GradeSystem.cpp ./src/User.cpp ./src/Admin.cpp ./src/Student.cpp ./src/utilities.cpp -o program
+g++ -std=c++17 -Iinclude ./src/main.cpp ./src/GradeSystem.cpp ./src/User.cpp ./src/Admin.cpp ./src/Student.cpp ./src/utilities.cpp -o output/program
 
 ```
 
