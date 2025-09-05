@@ -1,6 +1,11 @@
 #include <iostream>
 #include <string>
-#include <direct.h> 
+#ifdef _WIN32
+  #include <direct.h>
+#else
+  #include <sys/stat.h>
+  #include <unistd.h>
+#endif
 using namespace std;
 
 

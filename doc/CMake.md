@@ -98,7 +98,7 @@ enable_testing()
             "name": "student_grade_system",
             "displayName": "GCC 13.1.0 x86_64-w64-mingw32 (ucrt64)",
             "generator": "MSYS Makefiles",
-            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "binaryDir": "${sourceDir}/output/${presetName}",
             "cacheVariables": {
                 "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
                 "CMAKE_C_COMPILER": "Set the compile path for C",

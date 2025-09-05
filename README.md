@@ -80,7 +80,9 @@ The purpose of this project is to **build a strong foundation of C++ knowledge a
     │   ├── User.cpp          
     │   ├── Admin.cpp          
     │   ├── Student.cpp        
-    │   ├── utilities.cpp      
+    │   ├── utilities.cpp
+    ├── output                 # .exe file after build
+    │   └── program.exe
     ├── .gitignore
     ├── CMakeLists.txt         # Build configuration
     └── README.md              # Project overview
@@ -88,14 +90,21 @@ The purpose of this project is to **build a strong foundation of C++ knowledge a
 ## How to compile and execute
 - without CMake  
 1. compile the program with the following command in terminal
-    g++ "./src/main.cpp" "./src/GradeSystem.cpp" "./src/User.cpp" "./src/Admin.cpp" "./src/Student.cpp" "./src/utilities.cpp" -o "program"
 
-2. execute program.exe 
+```bash
+# win / macOS (clang++) – works the same with Homebrew g++ too
+g++ -std=c++17 -Iinclude src/*.cpp -o output/StudentGradeSystem
+# or, if you want to list files explicitly:
+g++ -std=c++17 -Iinclude ./src/main.cpp ./src/GradeSystem.cpp ./src/User.cpp ./src/Admin.cpp ./src/Student.cpp ./src/utilities.cpp -o output/StudentGradeSystem
+
+```
+
+2. execute StudentGradeSystem.exe 
 
 - with CMake  
 After configuring your project, you're ready to build. Open the Command Palette (Ctrl+Shift+P) and run the CMake: Build command, or select the Build button from the status bar.
 
-After the build, if student_grade_system.exe hasn't been made, run the following command in the terminal.
+After the build, if StudentGradeSystem.exe hasn't been made, run the following command in the terminal.
 ```
 cmake --build out/build/student_grade_system
 ```

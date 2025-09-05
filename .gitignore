@@ -27,7 +27,6 @@
 *.lib
 
 # Executables
-*.exe
 *.out
 *.app
 
@@ -35,5 +34,5 @@
 .vscode
 
 # Ignore built program and CMake related 
-out/
 CMakeFiles/
+output/student_grade_system
